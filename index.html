@@ -9,9 +9,9 @@
     <title>Weather API App</title>
 </head>
 <body>
-    <main id="main" class="w-screen h-screen text-slate-100">
+    <main id="main" class="w-screen h-screen text-slate-100 p-6">
         <nav class="py-4 bordered flex justify-center items-center ">
-            <div class="p-3 bg-[#262B4F] w-4/5 md:w-1/2 rounded-full relative">
+            <div class="p-3 bg-[#141730] w-4/5 md:w-1/2 rounded-full relative">
                 <input type="text" placeholder="Seach" class="w-full py-2 px-6 focus:outline-none rounded-full bg-[#3C4166] border border-[#7F85AC]">
                 <span class="search absolute top-1/2 text-xl right-6">
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -19,8 +19,12 @@
             </div>
         </nav>
 
-        <div class="main-wrapper container mx-auto grid grid-cols-3 gap-7">
-            <div class="main-icon col-span-1 flex flex-col justify-center items-center p-3">
+        <!-- main dark 141730 -->
+        <!-- dark 262B4F -->
+        <!-- light dark 4F4772 -->
+
+        <div class="main-wrapper w-3/4 mx-auto grid grid-cols-3 gap-3 ">
+            <div class="main-icon col-span-1 flex flex-col justify-center items-center p-3 bg-[#141730] rounded-xl">
                 <div class="img-container">
                     <img id="icon" src="./assets/weather_sunset.svg" class="w-64 text-white" alt="">
                 </div>
@@ -33,115 +37,51 @@
                 </div>
             </div>
 
-            <div class="main-details col-span-2">
-                <div class="current-details-wrapper w-full grid grid-cols-5 gap-4 bg-[#262B4F] rounded-xl">
-                    <div class="current-detial p-4 grid-col-1 flex justify-center items-center">
-                        <div class="detail-wrapper flex justify-center items-center">
-                            <div class="icon-wrapper w-12 h-12 rounded-full bg-white p-1 flex justify-center items-center">
-                                <img src="./assets/weather_sunset.svg" alt="" class="w-4/5">
-                            </div>
-                            <div class="detail ml-4">
-                                <div class="detail-title text-xl capitalize font-bold">windy</div>
-                                <span>20/h</span>
-                            </div>
-                        </div>
+            <div class="main-details col-span-2 p-3 bg-[#141730] rounded-xl">
+                <div class="grid grid-cols-12 gap-3 mb-3">
+                    <div class="col-span-2 p-3 bg-[#262B4F] rounded-xl">
+                        current
                     </div>
-                    <div class="current-detial p-4 grid-col-1 flex justify-center items-center">
-                        <div class="detail-wrapper flex justify-center items-center">
-                            <div class="icon-wrapper w-12 h-12 rounded-full bg-white p-1 flex justify-center items-center">
-                                <img src="./assets/weather_sunset.svg" alt="" class="w-4/5">
-                            </div>
-                            <div class="detail ml-4">
-                                <div class="detail-title text-xl capitalize font-bold">windy</div>
-                                <span>20/h</span>
-                            </div>
-                        </div>
+                    <div class="col-span-2 p-3 bg-[#262B4F] rounded-xl">
+                        mon
                     </div>
-                    <div class="current-detial p-4 grid-col-1 flex justify-center items-center">
-                        <div class="detail-wrapper flex justify-center items-center">
-                            <div class="icon-wrapper w-12 h-12 rounded-full bg-white p-1 flex justify-center items-center">
-                                <img src="./assets/weather_sunset.svg" alt="" class="w-4/5">
-                            </div>
-                            <div class="detail ml-4">
-                                <div class="detail-title text-xl capitalize font-bold">windy</div>
-                                <span>20/h</span>
-                            </div>
-                        </div>
+                    <div class="col-span-2 p-3 bg-[#262B4F] rounded-xl">
+                        tues
                     </div>
-                    <div class="current-detial p-4 grid-col-1 flex justify-center items-center">
-                        <div class="detail-wrapper flex justify-center items-center">
-                            <div class="icon-wrapper w-12 h-12 rounded-full bg-white p-1 flex justify-center items-center">
-                                <img src="./assets/weather_sunset.svg" alt="" class="w-4/5">
-                            </div>
-                            <div class="detail ml-4">
-                                <div class="detail-title text-xl capitalize font-bold">windy</div>
-                                <span>20/h</span>
-                            </div>
-                        </div>
+                    <div class="col-span-2 p-3 bg-[#262B4F] rounded-xl">
+                        wed
                     </div>
-                    <div class="current-detial p-4 grid-col-1 flex justify-center items-center">
-                        <div class="detail-wrapper flex justify-center items-center">
-                            <div class="icon-wrapper w-12 h-12 rounded-full bg-white p-1 flex justify-center items-center">
-                                <img src="./assets/weather_sunset.svg" alt="" class="w-4/5">
-                            </div>
-                            <div class="detail ml-4">
-                                <div class="detail-title text-xl capitalize font-bold">windy</div>
-                                <span>20/h</span>
-                            </div>
-                        </div>
+                    <div class="col-span-2 p-3 bg-[#262B4F] rounded-xl">
+                        thr
+                    </div>
+                    <div class="col-span-2 p-3 bg-[#262B4F] rounded-xl">
+                        fri
                     </div>
                 </div>
 
-                <div class="current-details-wrapper w-full my-6 grid grid-cols-5 gap-4">
-                    <div class="next-day p-6 bg-[#262B4F] hover:bg-[#262B4F] cursor-pointer rounded-xl text-center">
-                        <h2 class="text-xl mb-3 font-bold">Mon.</h2>
-                        <div class="icon-temp flex items-center">
-                            <div class="icon-wrapper icon-wrapper w-12 h-12 rounded-full bg-white p-1 flex justify-center items-center">
-                                <img src="/assets/weather_sunset.svg" alt="" class="w-4/5">
-                            </div>
-                            <div class="text-xl ml-2">20 °C</div>
-                        </div>
+                <div class="p-3 bg-[#262B4F] rounded-xl w-full mb-3">
+                    thekjek
+                </div>
+
+                <div class="grid grid-cols-3 gap-3 mb-3">
+                    <div class="col-span-1 rounded-xl bg-[#262B4F] p-3">
+                        side
                     </div>
-                    <div class="transition-all next-day p-6 bg-[#4F4772] hover:bg-[#262B4F] cursor-pointer rounded-xl text-center">
-                        <h2 class="text-xl mb-3 font-bold">Mon.</h2>
-                        <div class="icon-temp flex items-center">
-                            <div class="icon-wrapper icon-wrapper w-12 h-12 rounded-full bg-white p-1 flex justify-center items-center">
-                                <img src="/assets/weather_sunset.svg" alt="" class="w-4/5">
-                            </div>
-                            <div class="text-xl ml-2">20 °C</div>
-                        </div>
-                    </div>
-                    <div class="next-day p-6 bg-[#4F4772] hover:bg-[#262B4F] cursor-pointer rounded-xl text-center">
-                        <h2 class="text-xl mb-3 font-bold">Mon.</h2>
-                        <div class="icon-temp flex items-center">
-                            <div class="icon-wrapper icon-wrapper w-12 h-12 rounded-full bg-white p-1 flex justify-center items-center">
-                                <img src="/assets/weather_sunset.svg" alt="" class="w-4/5">
-                            </div>
-                            <div class="text-xl ml-2">20 °C</div>
-                        </div>
-                    </div>
-                    <div class="next-day p-6 bg-[#4F4772] hover:bg-[#262B4F] cursor-pointer rounded-xl text-center">
-                        <h2 class="text-xl mb-3 font-bold">Mon.</h2>
-                        <div class="icon-temp flex items-center">
-                            <div class="icon-wrapper icon-wrapper w-12 h-12 rounded-full bg-white p-1 flex justify-center items-center">
-                                <img src="/assets/weather_sunset.svg" alt="" class="w-4/5">
-                            </div>
-                            <div class="text-xl ml-2">20 °C</div>
-                        </div>
-                    </div>
-                    <div class="next-day p-6 bg-[#4F4772] hover:bg-[#262B4F] cursor-pointer rounded-xl text-center">
-                        <h2 class="text-xl mb-3 font-bold">Mon.</h2>
-                        <div class="icon-temp flex items-center">
-                            <div class="icon-wrapper icon-wrapper w-12 h-12 rounded-full bg-white p-1 flex justify-center items-center">
-                                <img src="/assets/weather_sunset.svg" alt="" class="w-4/5">
-                            </div>
-                            <div class="text-xl ml-2">20 °C</div>
-                        </div>
+                    <div class="col-span-2 rounded-xl p-3 bg-[#262B4F]">
+                        main
                     </div>
                 </div>
 
-                <div class="day-details w-full bg-[#262B4F] p-4 rounded-xl">
-
+                <div class="grid grid-cols-3 gap-3 mb-3">
+                    <div class="col-span-1 rounded-xl bg-[#262B4F] p-3">
+                        side
+                    </div>
+                    <div class="col-span-1 rounded-xl p-3 bg-[#262B4F]">
+                        main
+                    </div>
+                    <div class="col-span-1 rounded-xl p-3 bg-[#262B4F]">
+                        main
+                    </div>
                 </div>
             </div>
         </div>
