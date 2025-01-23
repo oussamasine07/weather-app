@@ -9,9 +9,9 @@
     <title>Weather API App</title>
 </head>
 <body>
-    <main id="main" class="w-screen h-screen text-slate-100">
+    <main id="main" class="w-screen h-screen text-slate-100 p-6">
         <nav class="py-4 bordered flex justify-center items-center ">
-            <div class="p-3 bg-[#262B4F] w-4/5 md:w-1/2 rounded-full relative">
+            <div class="p-3 bg-[#141730] w-4/5 md:w-1/2 rounded-full relative">
                 <input type="text" placeholder="Seach" class="w-full py-2 px-6 focus:outline-none rounded-full bg-[#3C4166] border border-[#7F85AC]">
                 <span class="search absolute top-1/2 text-xl right-6">
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -19,8 +19,8 @@
             </div>
         </nav>
 
-        <div class="main-wrapper container mx-auto grid grid-cols-3 gap-7">
-            <div class="main-icon col-span-1 flex flex-col justify-center items-center p-3">
+        <div class="main-wrapper w-3/4 mx-auto grid grid-cols-3 gap-3 mt-10">
+            <div class="main-icon col-span-1 flex flex-col justify-center items-center p-3 bg-[#141730] rounded-xl">
                 <div class="img-container">
                     <img id="icon" src="./assets/weather_sunset.svg" class="w-64 text-white" alt="">
                 </div>
@@ -33,115 +33,173 @@
                 </div>
             </div>
 
-            <div class="main-details col-span-2">
-                <div class="current-details-wrapper w-full grid grid-cols-5 gap-4 bg-[#262B4F] rounded-xl">
-                    <div class="current-detial p-4 grid-col-1 flex justify-center items-center">
-                        <div class="detail-wrapper flex justify-center items-center">
-                            <div class="icon-wrapper w-12 h-12 rounded-full bg-white p-1 flex justify-center items-center">
-                                <img src="./assets/weather_sunset.svg" alt="" class="w-4/5">
+            <div class="main-details col-span-2 p-3 bg-[#141730] rounded-xl">
+                <div class="grid grid-cols-12 gap-3 mb-3">
+                    <div class="relative col-span-2 p-3 bg-[#262B4F] transition-all hover:bg-[#4F4772] rounded-xl flex justify-center items-center cursor-pointer">
+                        <div class="box-day text-center capitalize text-lg font-bold">
+                            cur.
+                        </div>
+                        <div class="box-day-click w-full h-full absolute top-0 left-0 z-50 bg-transparent"></div>
+                    </div>
+
+                    <div class="relative col-span-2 p-3 bg-[#262B4F] transition-all hover:bg-[#4F4772] rounded-xl flex justify-center items-center cursor-pointer">
+                        <div class="box-day capitalize">
+                            <div class="w-full flex items-center justify-between">
+                                <span class="text-sm">11 °C</span>
+                                <img src="./assets/weather_sunset.svg" alt="weather" class="w-7 ml-2">
                             </div>
-                            <div class="detail ml-4">
-                                <div class="detail-title text-xl capitalize font-bold">windy</div>
-                                <span>20/h</span>
+                            <div class="day text-lg font-bold text-center mt-2">mon</div>
+                        </div>
+                        <div class="box-day-click w-full h-full absolute top-0 left-0 z-50 bg-transparent"></div>
+                    </div>
+                    <div class="relative col-span-2 p-3 bg-[#262B4F] transition-all hover:bg-[#4F4772] rounded-xl flex justify-center items-center cursor-pointer">
+                        <div class="box-day capitalize">
+                            <div class="w-full flex items-center justify-between">
+                                <span class="text-sm">11 °C</span>
+                                <img src="./assets/weather_sunset.svg" alt="weather" class="w-7 ml-2">
+                            </div>
+                            <div class="day text-lg font-bold text-center mt-2">mon</div>
+                        </div>
+                        <div class="box-day-click w-full h-full absolute top-0 left-0 z-50 bg-transparent"></div>
+                    </div>
+                    <div class="relative col-span-2 p-3 bg-[#262B4F] transition-all hover:bg-[#4F4772] rounded-xl flex justify-center items-center cursor-pointer">
+                        <div class="box-day capitalize">
+                            <div class="w-full flex items-center justify-between">
+                                <span class="text-sm">11 °C</span>
+                                <img src="./assets/weather_sunset.svg" alt="weather" class="w-7 ml-2">
+                            </div>
+                            <div class="day text-lg font-bold text-center mt-2">mon</div>
+                        </div>
+                        <div class="box-day-click w-full h-full absolute top-0 left-0 z-50 bg-transparent"></div>
+                    </div>
+                    <div class="relative col-span-2 p-3 bg-[#262B4F] transition-all hover:bg-[#4F4772] rounded-xl flex justify-center items-center cursor-pointer">
+                        <div class="box-day capitalize">
+                            <div class="w-full flex items-center justify-between">
+                                <span class="text-sm">11 °C</span>
+                                <img src="./assets/weather_sunset.svg" alt="weather" class="w-7 ml-2">
+                            </div>
+                            <div class="day text-lg font-bold text-center mt-2">mon</div>
+                        </div>
+                        <div class="box-day-click w-full h-full absolute top-0 left-0 z-50 bg-transparent"></div>
+                    </div>
+                    <div class="relative col-span-2 p-3 bg-[#262B4F] transition-all hover:bg-[#4F4772] rounded-xl flex justify-center items-center cursor-pointer">
+                        <div class="box-day capitalize">
+                            <div class="w-full flex items-center justify-between">
+                                <span class="text-sm">11 °C</span>
+                                <img src="./assets/weather_sunset.svg" alt="weather" class="w-7 ml-2">
+                            </div>
+                            <div class="day text-lg font-bold text-center mt-2">mon</div>
+                        </div>
+                        <div class="box-day-click w-full h-full absolute top-0 left-0 z-50 bg-transparent"></div>
+                    </div>
+                    
+                </div>
+
+                <div class="p-3 bg-[#262B4F] rounded-xl w-full mb-3">
+                    <div class="grid grid-cols-2 md:grid-cols-3">
+                        <div class="col-span-1">
+                            <h1 class="font-bold text-3xl capitalize">morocco</h1>
+                            <h1 class="font-light text-xl capitalize">beni mellal</h1>
+                        </div>
+                        <div class="col-span-1 flex flex-col justify-end ">
+                            <div class="text-wrapper flex items-center">
+                                <div class="font-bold capitalize mb-2">lat:</div>
+                                <div class="font-light ml-2">-6.34527</div>
+                            </div>
+                            <div class="text-wrapper flex items-center">
+                                <div class="font-bold capitalize">lon:</div>
+                                <div class="font-light ml-2">16.34527</div>
                             </div>
                         </div>
-                    </div>
-                    <div class="current-detial p-4 grid-col-1 flex justify-center items-center">
-                        <div class="detail-wrapper flex justify-center items-center">
-                            <div class="icon-wrapper w-12 h-12 rounded-full bg-white p-1 flex justify-center items-center">
-                                <img src="./assets/weather_sunset.svg" alt="" class="w-4/5">
+                        <div class="col-span-1 flex flex-col justify-end ">
+                            <div class="text-wrapper flex items-center">
+                                <div class="font-bold capitalize mb-2">sea level:</div>
+                                <div class="font-light ml-2">-6.34527</div>
                             </div>
-                            <div class="detail ml-4">
-                                <div class="detail-title text-xl capitalize font-bold">windy</div>
-                                <span>20/h</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="current-detial p-4 grid-col-1 flex justify-center items-center">
-                        <div class="detail-wrapper flex justify-center items-center">
-                            <div class="icon-wrapper w-12 h-12 rounded-full bg-white p-1 flex justify-center items-center">
-                                <img src="./assets/weather_sunset.svg" alt="" class="w-4/5">
-                            </div>
-                            <div class="detail ml-4">
-                                <div class="detail-title text-xl capitalize font-bold">windy</div>
-                                <span>20/h</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="current-detial p-4 grid-col-1 flex justify-center items-center">
-                        <div class="detail-wrapper flex justify-center items-center">
-                            <div class="icon-wrapper w-12 h-12 rounded-full bg-white p-1 flex justify-center items-center">
-                                <img src="./assets/weather_sunset.svg" alt="" class="w-4/5">
-                            </div>
-                            <div class="detail ml-4">
-                                <div class="detail-title text-xl capitalize font-bold">windy</div>
-                                <span>20/h</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="current-detial p-4 grid-col-1 flex justify-center items-center">
-                        <div class="detail-wrapper flex justify-center items-center">
-                            <div class="icon-wrapper w-12 h-12 rounded-full bg-white p-1 flex justify-center items-center">
-                                <img src="./assets/weather_sunset.svg" alt="" class="w-4/5">
-                            </div>
-                            <div class="detail ml-4">
-                                <div class="detail-title text-xl capitalize font-bold">windy</div>
-                                <span>20/h</span>
+                            <div class="text-wrapper flex items-center">
+                                <div class="font-bold capitalize">grnd level:</div>
+                                <div class="font-light ml-2">16.34527</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="current-details-wrapper w-full my-6 grid grid-cols-5 gap-4">
-                    <div class="next-day p-6 bg-[#262B4F] hover:bg-[#262B4F] cursor-pointer rounded-xl text-center">
-                        <h2 class="text-xl mb-3 font-bold">Mon.</h2>
-                        <div class="icon-temp flex items-center">
-                            <div class="icon-wrapper icon-wrapper w-12 h-12 rounded-full bg-white p-1 flex justify-center items-center">
-                                <img src="/assets/weather_sunset.svg" alt="" class="w-4/5">
+                <!-- main dark 141730 -->
+                <!-- dark 262B4F -->
+                <!-- light dark 4F4772 -->
+                <div class="grid grid-cols-3 gap-3 mb-3">
+                    <div class="col-span-1 rounded-xl bg-[#262B4F] p-3 flex justify-center items-center">
+                        <div>
+                            <h2 class="text-lg font-bold mb-3">Feels like</h2>
+                            <div class="text-center">
+                                <i class="fa-solid fa-heart"></i>
+                                <span class="ml-2">345</span>    
                             </div>
-                            <div class="text-xl ml-2">20 °C</div>
                         </div>
                     </div>
-                    <div class="transition-all next-day p-6 bg-[#4F4772] hover:bg-[#262B4F] cursor-pointer rounded-xl text-center">
-                        <h2 class="text-xl mb-3 font-bold">Mon.</h2>
-                        <div class="icon-temp flex items-center">
-                            <div class="icon-wrapper icon-wrapper w-12 h-12 rounded-full bg-white p-1 flex justify-center items-center">
-                                <img src="/assets/weather_sunset.svg" alt="" class="w-4/5">
+                    <div class="col-span-2 rounded-xl p-3 bg-[#262B4F]">
+                        <h2 class="text-lg font-bold mb-3">Wind:</h2>
+                        <div class="flex">
+                            <div class="flex items-start grow pl-4">
+                                <div class="icon">
+                                    <i class="fa-solid fa-wind"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <h4 class="font-bold text-md capitalize">wind speed:</h4>
+                                    <p>452.12</p>
+                                </div>
                             </div>
-                            <div class="text-xl ml-2">20 °C</div>
-                        </div>
-                    </div>
-                    <div class="next-day p-6 bg-[#4F4772] hover:bg-[#262B4F] cursor-pointer rounded-xl text-center">
-                        <h2 class="text-xl mb-3 font-bold">Mon.</h2>
-                        <div class="icon-temp flex items-center">
-                            <div class="icon-wrapper icon-wrapper w-12 h-12 rounded-full bg-white p-1 flex justify-center items-center">
-                                <img src="/assets/weather_sunset.svg" alt="" class="w-4/5">
+                            <div class="flex items-start grow pl-4">
+                                <div class="icon">
+                                    <i class="fa-regular fa-compass"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <h4 class="font-bold text-md capitalize">degree :</h4>
+                                    <p>452.12</p>
+                                </div>
                             </div>
-                            <div class="text-xl ml-2">20 °C</div>
-                        </div>
-                    </div>
-                    <div class="next-day p-6 bg-[#4F4772] hover:bg-[#262B4F] cursor-pointer rounded-xl text-center">
-                        <h2 class="text-xl mb-3 font-bold">Mon.</h2>
-                        <div class="icon-temp flex items-center">
-                            <div class="icon-wrapper icon-wrapper w-12 h-12 rounded-full bg-white p-1 flex justify-center items-center">
-                                <img src="/assets/weather_sunset.svg" alt="" class="w-4/5">
-                            </div>
-                            <div class="text-xl ml-2">20 °C</div>
-                        </div>
-                    </div>
-                    <div class="next-day p-6 bg-[#4F4772] hover:bg-[#262B4F] cursor-pointer rounded-xl text-center">
-                        <h2 class="text-xl mb-3 font-bold">Mon.</h2>
-                        <div class="icon-temp flex items-center">
-                            <div class="icon-wrapper icon-wrapper w-12 h-12 rounded-full bg-white p-1 flex justify-center items-center">
-                                <img src="/assets/weather_sunset.svg" alt="" class="w-4/5">
-                            </div>
-                            <div class="text-xl ml-2">20 °C</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="day-details w-full bg-[#262B4F] p-4 rounded-xl">
-
+                <div class="grid grid-cols-3 gap-3">
+                    <div class="col-span-1 rounded-xl bg-[#262B4F] p-3">
+                        <div class="flex md:flex-col">
+                            <div class="flex mb-4">
+                                <div class="font-bold capitalize grow">max temptreture:</div>
+                                <div class="capitalize grow"><span id="max-temp">75</span> °C</div>
+                            </div>
+                            <div class="flex">
+                                <div class="font-bold capitalize grow">min temptreture:</div>
+                                <div class="capitalize grow"><span id="max-temp">75</span> °C</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-span-1 rounded-xl bg-[#262B4F] p-3">
+                        <div class="flex md:flex-col">
+                            <div class="flex mb-4">
+                                <div class="font-bold capitalize grow">presure:</div>
+                                <div class="capitalize grow"><span id="max-temp">75</span> °C</div>
+                            </div>
+                            <div class="flex">
+                                <div class="font-bold capitalize grow">humidety:</div>
+                                <div class="capitalize grow"><span id="max-temp">75</span> °C</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-span-1 rounded-xl bg-[#262B4F] p-3">
+                        <div class="flex md:flex-col">
+                            <div class="flex mb-4">
+                                <div class="font-bold capitalize grow">sea:</div>
+                                <div class="capitalize grow"><span id="max-temp">75</span> °C</div>
+                            </div>
+                            <div class="flex">
+                                <div class="font-bold capitalize grow">level:</div>
+                                <div class="capitalize grow"><span id="max-temp">75</span> °C</div>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
