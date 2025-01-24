@@ -2,6 +2,7 @@
 // get all DOM elements
 const currentLocationBtn = document.getElementById("current-location")
 
+
 const apiKey = "dd235072273e8b3d0e412e7e1d4435b7";
 
 let currentLocation = {};
