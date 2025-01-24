@@ -19,17 +19,24 @@
             </div>
         </nav>
 
+        <div class="w-3/4 mx-auto bg-[#141730] p-3 rounded-xl flex items-center justify-center">
+            <button id="current-location" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full capitalize" type="button">
+                <i class="fa-solid fa-location-crosshairs"></i>
+                <span class="ml-3">get my current location</span>
+            </button>
+        </div>
+
         <div class="main-wrapper w-3/4 mx-auto grid grid-cols-3 gap-3 mt-10">
             <div class="main-icon col-span-1 flex flex-col justify-center items-center p-3 bg-[#141730] rounded-xl">
                 <div class="img-container">
-                    <img id="icon" src="./assets/weather_sunset.svg" class="w-64 text-white" alt="">
+                    <img id="main-side-icon" src="./assets/weather_sunset.svg" class="w-64 text-white" alt="">
                 </div>
                 <div class="main-tempreture-wrapper flex justify-center items-end mt-4">
                     <div class="flex justify-center items-start mr-2">
-                        <div class="text-7xl">11</div>
+                        <div class="text-7xl" id="main-side-degree">11</div>
                         <div class="text-3xl mt-2">°C</div>
                     </div>
-                    <div class="text-5xl capitalize ml-4">cloudy</div>
+                    <div class="text-5xl capitalize ml-4" id="main-side-description">cloudy</div>
                 </div>
             </div>
 
@@ -98,42 +105,40 @@
                 <div class="p-3 bg-[#262B4F] rounded-xl w-full mb-3">
                     <div class="grid grid-cols-2 md:grid-cols-3">
                         <div class="col-span-1">
-                            <h1 class="font-bold text-3xl capitalize">morocco</h1>
-                            <h1 class="font-light text-xl capitalize">beni mellal</h1>
+                            <h1 class="font-bold text-3xl capitalize" id="countery">morocco</h1>
+                            <h1 class="font-light text-xl capitalize" id="city">beni mellal</h1>
                         </div>
                         <div class="col-span-1 flex flex-col justify-end ">
                             <div class="text-wrapper flex items-center">
                                 <div class="font-bold capitalize mb-2">lat:</div>
-                                <div class="font-light ml-2">-6.34527</div>
+                                <div class="font-light ml-2" id="lat">-6.34527</div>
                             </div>
                             <div class="text-wrapper flex items-center">
                                 <div class="font-bold capitalize">lon:</div>
-                                <div class="font-light ml-2">16.34527</div>
+                                <div class="font-light ml-2" id="lon">16.34527</div>
                             </div>
                         </div>
                         <div class="col-span-1 flex flex-col justify-end ">
                             <div class="text-wrapper flex items-center">
-                                <div class="font-bold capitalize mb-2">sea level:</div>
-                                <div class="font-light ml-2">-6.34527</div>
+                                <div class="font-bold capitalize mb-2">sun rise:</div>
+                                <div class="font-light ml-2" id="sun-rise">-6.34527</div>
                             </div>
                             <div class="text-wrapper flex items-center">
-                                <div class="font-bold capitalize">grnd level:</div>
-                                <div class="font-light ml-2">16.34527</div>
+                                <div class="font-bold capitalize">sun set:</div>
+                                <div class="font-light ml-2" id="sun-set">16.34527</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- main dark 141730 -->
-                <!-- dark 262B4F -->
-                <!-- light dark 4F4772 -->
+                
                 <div class="grid grid-cols-3 gap-3 mb-3">
                     <div class="col-span-1 rounded-xl bg-[#262B4F] p-3 flex justify-center items-center">
                         <div>
                             <h2 class="text-lg font-bold mb-3">Feels like</h2>
                             <div class="text-center">
                                 <i class="fa-solid fa-heart"></i>
-                                <span class="ml-2">345</span>    
+                                <span class="ml-2" id="feel-like">345</span>    
                             </div>
                         </div>
                     </div>
@@ -146,7 +151,7 @@
                                 </div>
                                 <div class="ml-3">
                                     <h4 class="font-bold text-md capitalize">wind speed:</h4>
-                                    <p>452.12</p>
+                                    <p id="wind-speed">452.12</p>
                                 </div>
                             </div>
                             <div class="flex items-start grow pl-4">
@@ -155,7 +160,7 @@
                                 </div>
                                 <div class="ml-3">
                                     <h4 class="font-bold text-md capitalize">degree :</h4>
-                                    <p>452.12</p>
+                                    <p id="wind-degree">452.12</p>
                                 </div>
                             </div>
                         </div>
@@ -171,7 +176,7 @@
                             </div>
                             <div class="flex">
                                 <div class="font-bold capitalize grow">min temptreture:</div>
-                                <div class="capitalize grow"><span id="max-temp">75</span> °C</div>
+                                <div class="capitalize grow"><span id="min-temp">75</span> °C</div>
                             </div>
                         </div>
                     </div>
@@ -179,11 +184,11 @@
                         <div class="flex md:flex-col">
                             <div class="flex mb-4">
                                 <div class="font-bold capitalize grow">presure:</div>
-                                <div class="capitalize grow"><span id="max-temp">75</span> °C</div>
+                                <div class="capitalize grow"><span id="presure">75</span> °C</div>
                             </div>
                             <div class="flex">
                                 <div class="font-bold capitalize grow">humidety:</div>
-                                <div class="capitalize grow"><span id="max-temp">75</span> °C</div>
+                                <div class="capitalize grow"><span id="humidity">75</span> °C</div>
                             </div>
                         </div>
                     </div>
@@ -191,11 +196,11 @@
                         <div class="flex md:flex-col">
                             <div class="flex mb-4">
                                 <div class="font-bold capitalize grow">sea:</div>
-                                <div class="capitalize grow"><span id="max-temp">75</span> °C</div>
+                                <div class="capitalize grow"><span id="sea-level">75</span> °C</div>
                             </div>
                             <div class="flex">
                                 <div class="font-bold capitalize grow">level:</div>
-                                <div class="capitalize grow"><span id="max-temp">75</span> °C</div>
+                                <div class="capitalize grow"><span id="grnd-level">75</span> °C</div>
                             </div>
                         </div>
                     </div>
@@ -205,6 +210,10 @@
         </div>
 
     </main>
+
+    <!-- main dark 141730 -->
+    <!-- dark 262B4F -->
+    <!-- light dark 4F4772 -->
     <script src="js/app.js"></script>
 </body>
 </html>
