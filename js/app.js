@@ -1,6 +1,7 @@
 
 // get all DOM elements
 const currentLocationBtn = document.getElementById("current-location")
+const searchInput = document.getElementById("search-city");
 const mainSideIcon = document.getElementById("main-side-icon");
 const mainSideDegree = document.getElementById("main-side-degree");
 const mainSideDescription = document.getElementById("main-side-description");
@@ -25,6 +26,25 @@ const apiKey = "dd235072273e8b3d0e412e7e1d4435b7";
 let currentLocation = {};
 let weatherInfo = null;
 
+
+currentLocationBtn.addEventListener("click",() =>  getCurrentLocationWeather());
+
+const getCurrentLocationWeather = () => {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(setCurrentLocationAndFetchWeather);
+    } else {
+        console.log("this browser does not support localization")
+    }
+}
+
+const setCurrentLocationAndFetchWeather = async ({coords: { longitude, latitude }}) => {
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
+    weather = await fetchWeather( url );
+
+    showWeatherInfo(weather);
+    
+}
+
 const showWeatherInfo = ( weather ) => {
     // mainSideIcon.src = "";
     mainSideDegree.innerText = weather.main.temp;
@@ -46,17 +66,6 @@ const showWeatherInfo = ( weather ) => {
     grndLevel.innerText = weather.main.grnd_level;
 }
 
-const setCurrentLocationAndFetchWeather = async (position) => {
-    currentLocation.longitude = position.coords.longitude;
-    currentLocation.latitude = position.coords.latitude;
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${ currentLocation.latitude }&lon=${ currentLocation.longitude }&appid=${ apiKey }`;
-
-    weather = await fetchWeather( url );
-
-    showWeatherInfo( weather );
-    
-}
-
 const fetchWeather = async ( url ) => {
     try {
         const res = await fetch(url);
@@ -64,21 +73,41 @@ const fetchWeather = async ( url ) => {
         return weather;
     } catch (error) {
         console.log(error);
-    }
-    
+    }   
 }
 
-const getCurrentLocationWeather = () => {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(setCurrentLocationAndFetchWeather);
-    } else {
-        console.log("this browser does not support localization")
+searchInput.addEventListener("keypress", ( e ) => searchCity(e));
+
+let citiesData = []; // Store the city data globally to avoid fetching repeatedly
+const searchCities = []; // Temporary array for search results
+
+// Load the city data once when the page loads
+const loadCityData = async () => {
+    const res = await fetch("./js/ville.json");
+    citiesData = await res.json(); // Save data globally
+};
+
+// Function to handle search input
+const searchCity = (e) => {
+    const search = e.target.value.toLowerCase(); // Convert input to lowercase for case-insensitive matching
+    searchCities.length = 0; // Clear previous results
+
+    if (search.length > 0) {
+        // Filter cities based on the user's input
+        citiesData.forEach(city => {
+            if (city.ville.toLowerCase().startsWith(search)) {
+                searchCities.push(city);
+            }
+        });
     }
-}
+
+    console.log(searchCities); // Display the filtered list
+};
 
 
+// Initialize the city data
+loadCityData();
 
-currentLocationBtn.addEventListener("click", getCurrentLocationWeather);
 
 // async function getWeather () {
 //     const weather = await fetch("https://api.openweathermap.org/data/2.5/weather?lat=-6.353335&lon=32.334193&appid=dd235072273e8b3d0e412e7e1d4435b7");

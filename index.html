@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="js/app.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/30a7946fd8.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css">
@@ -12,14 +13,50 @@
     <main id="main" class="w-screen h-screen text-slate-100 p-6">
         <nav class="py-4 bordered flex justify-center items-center relative">
             <div class="p-3 bg-[#141730] w-4/5 md:w-1/2 rounded-full relative">
-                <input type="text" placeholder="Seach" class="w-full py-2 px-6 focus:outline-none rounded-full bg-[#3C4166] border border-[#7F85AC]">
+                <input type="text" id="search-city" placeholder="Seach" class="w-full py-2 px-6 focus:outline-none rounded-full bg-[#3C4166] border border-[#7F85AC]">
                 <span class="search absolute top-1/2 text-xl right-6">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </span>
             </div>
 
-            <div class="md:w-1/2 bg-sky-100 p-3 rounded-xl absolute top-full z-[100]">
+            <div class="md:w-1/2 bg-sky-100 p-3 rounded-xl absolute top-full z-[100] max-h-64 overflow-y-scroll">
                 <ul>
+                    <li class="border-b-2 border-slate-500 ">
+                        <a href="#" class="p-2 capitalize text-[#141730] font-bold block transition-all hover:text-gray-500">casablanca</a>
+                    </li>
+                    <li class="border-b-2 border-slate-500 ">
+                        <a href="#" class="p-2 capitalize text-[#141730] font-bold block transition-all hover:text-gray-500">casablanca</a>
+                    </li>
+                    <li class="border-b-2 border-slate-500 ">
+                        <a href="#" class="p-2 capitalize text-[#141730] font-bold block transition-all hover:text-gray-500">casablanca</a>
+                    </li>
+                    <li class="border-b-2 border-slate-500 ">
+                        <a href="#" class="p-2 capitalize text-[#141730] font-bold block transition-all hover:text-gray-500">casablanca</a>
+                    </li>
+                    <li class="border-b-2 border-slate-500 ">
+                        <a href="#" class="p-2 capitalize text-[#141730] font-bold block transition-all hover:text-gray-500">casablanca</a>
+                    </li>
+                    <li class="border-b-2 border-slate-500 ">
+                        <a href="#" class="p-2 capitalize text-[#141730] font-bold block transition-all hover:text-gray-500">casablanca</a>
+                    </li>
+                    <li class="border-b-2 border-slate-500 ">
+                        <a href="#" class="p-2 capitalize text-[#141730] font-bold block transition-all hover:text-gray-500">casablanca</a>
+                    </li>
+                    <li class="border-b-2 border-slate-500 ">
+                        <a href="#" class="p-2 capitalize text-[#141730] font-bold block transition-all hover:text-gray-500">casablanca</a>
+                    </li>
+                    <li class="border-b-2 border-slate-500 ">
+                        <a href="#" class="p-2 capitalize text-[#141730] font-bold block transition-all hover:text-gray-500">casablanca</a>
+                    </li>
+                    <li class="border-b-2 border-slate-500 ">
+                        <a href="#" class="p-2 capitalize text-[#141730] font-bold block transition-all hover:text-gray-500">casablanca</a>
+                    </li>
+                    <li class="border-b-2 border-slate-500 ">
+                        <a href="#" class="p-2 capitalize text-[#141730] font-bold block transition-all hover:text-gray-500">casablanca</a>
+                    </li>
+                    <li class="border-b-2 border-slate-500 ">
+                        <a href="#" class="p-2 capitalize text-[#141730] font-bold block transition-all hover:text-gray-500">casablanca</a>
+                    </li>
                     <li class="border-b-2 border-slate-500 ">
                         <a href="#" class="p-2 capitalize text-[#141730] font-bold block transition-all hover:text-gray-500">casablanca</a>
                     </li>
@@ -33,12 +70,12 @@
             </div>
         </nav>
 
-        <!-- <div class="w-3/4 mx-auto bg-[#141730] p-3 rounded-xl flex items-center justify-center">
+        <div class="w-3/4 mx-auto bg-[#141730] p-3 rounded-xl flex items-center justify-center">
             <button id="current-location" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full capitalize" type="button">
                 <i class="fa-solid fa-location-crosshairs"></i>
                 <span class="ml-3">get my current location</span>
             </button>
-        </div> -->
+        </div>
 
         <div class="main-wrapper w-3/4 mx-auto grid grid-cols-3 gap-3 mt-10">
             <div class="main-icon col-span-1 flex flex-col justify-center items-center p-3 bg-[#141730] rounded-xl">
@@ -228,6 +265,6 @@
     <!-- main dark 141730 -->
     <!-- dark 262B4F -->
     <!-- light dark 4F4772 -->
-    <script src="js/app.js"></script>
+    
 </body>
 </html>
