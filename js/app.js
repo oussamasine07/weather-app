@@ -26,7 +26,24 @@ let currentLocation = {};
 let weatherInfo = null;
 
 const showWeatherInfo = ( weather ) => {
-
+    // mainSideIcon.src = "";
+    mainSideDegree.innerText = weather.main.temp;
+    mainSideDescription.innerText = weather.weather[0].description;
+    countery.innerText = weather.sys.country;
+    city.innerText = weather.name;
+    lat.innerText = weather.coord.lat;
+    lon.innerText = weather.coord.lon;
+    sunRise.innerText = weather.sys.sunrise;
+    sunSet.innerText = weather.sys.sunset;
+    feelLike.innerText = weather.main.feels_like;
+    windSpeed.innerText = weather.wind.speed;
+    windDegree.innerText = weather.wind.deg;
+    maxTemp.innerText = weather.main.temp_max;
+    minTemp.innerText = weather.main.temp_min;
+    presure.innerText = weather.main.pressure;
+    humidity.innerText = weather.main.humidity;
+    seaLevel.innerText = weather.main.sea_level;
+    grndLevel.innerText = weather.main.grnd_level;
 }
 
 const setCurrentLocationAndFetchWeather = async (position) => {
@@ -34,9 +51,10 @@ const setCurrentLocationAndFetchWeather = async (position) => {
     currentLocation.latitude = position.coords.latitude;
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${ currentLocation.latitude }&lon=${ currentLocation.longitude }&appid=${ apiKey }`;
 
-    weatherInfo = await fetchWeather( url );
+    weather = await fetchWeather( url );
 
-    console.log(weatherInfo)
+    showWeatherInfo( weather );
+    
 }
 
 const fetchWeather = async ( url ) => {
