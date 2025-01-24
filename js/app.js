@@ -1,18 +1,40 @@
 
-let result;
-const icon = document.getElementById("icon");
+// get all DOM elements
 const currentLocationBtn = document.getElementById("current-location")
 
-const currentLocation = {};
+const apiKey = "dd235072273e8b3d0e412e7e1d4435b7";
 
-const setLocation = (position) => {
+let currentLocation = {};
+let weatherInfo = null;
+
+const showWeatherInfo = ( weather ) => {
+
+}
+
+const setCurrentLocationAndFetchWeather = async (position) => {
     currentLocation.longitude = position.coords.longitude;
     currentLocation.latitude = position.coords.latitude;
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${ currentLocation.latitude }&lon=${ currentLocation.longitude }&appid=${ apiKey }`;
+
+    weatherInfo = await fetchWeather( url );
+
+    console.log(weatherInfo)
+}
+
+const fetchWeather = async ( url ) => {
+    try {
+        const res = await fetch(url);
+        const weather = await res.json();
+        return weather;
+    } catch (error) {
+        console.log(error);
+    }
+    
 }
 
 const getCurrentLocationWeather = () => {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(setLocation);
+        navigator.geolocation.getCurrentPosition(setCurrentLocationAndFetchWeather);
     } else {
         console.log("this browser does not support localization")
     }
