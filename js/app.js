@@ -107,6 +107,16 @@ const hideSeachAutoComplete = ( e ) => {
     autoCompletecities.classList.add("hidden")
 }
 
+const showUnfoundCity = () => {
+    loadCities.innerHTML = "";
+    const li = document.createElement("li");
+    li.className = "border-b-2 border-slate-500";
+    li.innerHTML = `
+        <a href="#" class="p-2 capitalize text-center text-red-500 font-bold block transition-all">the city you're looking for NOT Found</a>
+    `;
+    loadCities.appendChild(li);
+}
+
 searchInput.addEventListener("input", ( e ) => searchCity(e));
 searchInput.addEventListener("blur", ( e ) => hideSeachAutoComplete(e));
 
@@ -126,7 +136,7 @@ const searchCity = (e) => {
 
     if (search != "" ) {
         if ( searchCities.length == 0 && e.target.value != "" ) {
-            console.log("city not found")
+            showUnfoundCity()
         } else {
 
             loadCities.innerHTML = "";
