@@ -107,7 +107,7 @@ const hideSeachAutoComplete = ( e ) => {
     autoCompletecities.classList.add("hidden")
 }
 
-searchInput.addEventListener("keydown", ( e ) => searchCity(e));
+searchInput.addEventListener("input", ( e ) => searchCity(e));
 searchInput.addEventListener("blur", ( e ) => hideSeachAutoComplete(e));
 
 const searchCity = (e) => {
@@ -124,24 +124,23 @@ const searchCity = (e) => {
         });
     }
 
-
-    if ( searchCities.length == 0 && e.target.value != "" ) {
-        console.log("city not found")
-    } else {
-        loadCities.innerHTML = "";
-
-        if ( e.target.value == "" ) {
-            hideSeachAutoComplete( e )
-            searchCities = [];
+    if (search != "" ) {
+        if ( searchCities.length == 0 && e.target.value != "" ) {
+            console.log("city not found")
         } else {
-            
+
+            loadCities.innerHTML = "";
             showSearchAutoComplete();
             searchCities.forEach(city => {
                 createAutoLoadElem(city);
             })
+            
         }
-        
+    } else {
+        hideSeachAutoComplete( e )
+        searchCities = [];
     }
+    
 };
 
 loadCityData();
