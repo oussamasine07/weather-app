@@ -20,6 +20,8 @@ const presure = document.getElementById("presure");
 const humidity = document.getElementById("humidity");
 const seaLevel = document.getElementById("sea-level");
 const grndLevel = document.getElementById("grnd-level");
+const loadCities = document.getElementById("load-cities");
+const autoCompletecities = document.getElementById("auto-complete-cities");
 
 const apiKey = "dd235072273e8b3d0e412e7e1d4435b7";
 
@@ -76,24 +78,45 @@ const fetchWeather = async ( url ) => {
     }   
 }
 
-searchInput.addEventListener("keypress", ( e ) => searchCity(e));
 
-let citiesData = []; // Store the city data globally to avoid fetching repeatedly
-const searchCities = []; // Temporary array for search results
+let citiesData = []; 
+let searchCities = []; 
 
-// Load the city data once when the page loads
+
 const loadCityData = async () => {
     const res = await fetch("./js/ville.json");
-    citiesData = await res.json(); // Save data globally
+    citiesData = await res.json(); 
 };
 
-// Function to handle search input
+const createAutoLoadElem = ( { ville } ) => {
+
+    const li = document.createElement("li");
+    li.className = "border-b-2 border-slate-500";
+    li.innerHTML = `
+        <a href="#" class="p-2 capitalize text-[#141730] font-bold block transition-all hover:text-gray-500">${ ville }</a>
+    `;
+    loadCities.appendChild(li);
+}
+
+const showSearchAutoComplete = () => {
+    autoCompletecities.classList.remove("hidden")
+}
+
+const hideSeachAutoComplete = ( e ) => {
+    if( e.target ) e.target.value = "";
+    autoCompletecities.classList.add("hidden")
+}
+
+searchInput.addEventListener("keydown", ( e ) => searchCity(e));
+searchInput.addEventListener("blur", ( e ) => hideSeachAutoComplete(e));
+
 const searchCity = (e) => {
-    const search = e.target.value.toLowerCase(); // Convert input to lowercase for case-insensitive matching
-    searchCities.length = 0; // Clear previous results
+    const search = e.target.value.toLowerCase();
+    searchCities.length = 0;
+    searchCities = [];
 
     if (search.length > 0) {
-        // Filter cities based on the user's input
+       
         citiesData.forEach(city => {
             if (city.ville.toLowerCase().startsWith(search)) {
                 searchCities.push(city);
@@ -101,11 +124,26 @@ const searchCity = (e) => {
         });
     }
 
-    console.log(searchCities); // Display the filtered list
+
+    if ( searchCities.length == 0 && e.target.value != "" ) {
+        console.log("city not found")
+    } else {
+        loadCities.innerHTML = "";
+
+        if ( e.target.value == "" ) {
+            hideSeachAutoComplete( e )
+            searchCities = [];
+        } else {
+            
+            showSearchAutoComplete();
+            searchCities.forEach(city => {
+                createAutoLoadElem(city);
+            })
+        }
+        
+    }
 };
 
-
-// Initialize the city data
 loadCityData();
 
 
