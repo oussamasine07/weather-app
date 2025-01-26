@@ -32,6 +32,16 @@ const apiKey = "dd235072273e8b3d0e412e7e1d4435b7";
 let currentLocation = {};
 let weatherInfo = null;
 
+document.addEventListener("click", async e => {
+    e.preventDefault()
+    if (e.target.parentElement.classList.contains("search-result")) {
+        console.log( e.target.innerText )
+        weather = await fetchForcastWeather({ name: e.target.innerText.toLowerCase() });
+    
+        showWeatherInfo(weather);
+        autoCompletecities.classList.add("hidden")
+    }
+})
 
 currentLocationBtn.addEventListener("click",() =>  getCurrentLocationWeather());
 
@@ -44,8 +54,6 @@ const getCurrentLocationWeather = () => {
 }
 
 const setCurrentLocationAndFetchWeather = async ({coords: { longitude, latitude }}) => {
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
-    // weather = await fetchWeather( url );
     weather = await fetchForcastWeather({ lat: latitude, lon: longitude });
     
     showWeatherInfo(weather);
@@ -144,7 +152,7 @@ const loadCityData = async () => {
 const createAutoLoadElem = ( { ville } ) => {
 
     const li = document.createElement("li");
-    li.className = "border-b-2 border-slate-500";
+    li.className = "search-result border-b-2 border-slate-500";
     li.innerHTML = `
         <a href="#" class="p-2 capitalize text-[#141730] font-bold block transition-all hover:text-gray-500">${ ville }</a>
     `;
@@ -171,7 +179,7 @@ const showUnfoundCity = () => {
 }
 
 searchInput.addEventListener("input", ( e ) => searchCity(e));
-searchInput.addEventListener("blur", ( e ) => hideSeachAutoComplete(e));
+// searchInput.addEventListener("blur", ( e ) => hideSeachAutoComplete(e));
 
 const searchCity = (e) => {
     const search = e.target.value.toLowerCase();
