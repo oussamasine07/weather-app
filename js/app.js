@@ -157,8 +157,16 @@ loadCityData();
 
 let fetchedForcastWeather = {};
 
-const fetchForcastWeather = async () => {
-    const res = await fetch("https://api.openweathermap.org/data/2.5/forecast?q=casablanca&appid=dd235072273e8b3d0e412e7e1d4435b7");
+const fetchForcastWeather = async ( objDetails ) => {
+    let url;
+
+    if ( 'name' in objDetails ) url = `https://api.openweathermap.org/data/2.5/forecast?q=${objDetails.name}&appid=dd235072273e8b3d0e412e7e1d4435b7`;
+
+    if ( 'lat' in objDetails ) url = `https://api.openweathermap.org/data/2.5/forecast?lat=${objDetails.lat}&lon=${objDetails.lon}&appid=${apiKey}`;
+
+    console.log( url )
+    // const res = await fetch("https://api.openweathermap.org/data/2.5/forecast?q=casablanca&appid=dd235072273e8b3d0e412e7e1d4435b7");
+    const res = await fetch( url );
     const { city, list } = await res.json();
 
     fetchedForcastWeather.city = city
@@ -188,7 +196,8 @@ const fetchForcastWeather = async () => {
 
 }
 
-fetchForcastWeather();
+// fetchForcastWeather({name: "beni mellal"});
+fetchForcastWeather({lat: 32.3373, lon: -6.3498});
 
 
 // async function getWeather () {
