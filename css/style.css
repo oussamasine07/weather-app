@@ -9,3 +9,12 @@
 /* .main-wrapper {
     border: 1px solid black;
 } */
+
+@media only screen and (max-width: 650px) {
+    #date-tab-wrapper {
+        width: 200%;
+    }
+    #time-btns-wrapper {
+        width: 170%;
+    }
+}
