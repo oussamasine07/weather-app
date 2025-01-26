@@ -51,7 +51,6 @@ const setCurrentLocationAndFetchWeather = async ({coords: { longitude, latitude 
 
 const makeDateTab = ( tab, dayDatails ) => {
     
-    console.log( dayDatails["00:00"].main.temp )
     const date = new Date( tab );
     const dayNames = ["sun", "mon", "tus", "wed", "thu", "fri", "sat" ]
     
@@ -66,7 +65,7 @@ const makeDateTab = ( tab, dayDatails ) => {
             </div>
             <div class="day text-lg font-bold text-center mt-2">${ dayNames[date.getDay()] }-${ date.getDate() }</div>
         </div>
-        <div class="box-day-click w-full h-full absolute top-0 left-0 z-50 bg-transparent"></div>
+        <div data-day-details='${ JSON.stringify(dayDatails) }' class="box-day-click w-full h-full absolute top-0 left-0 z-50 bg-transparent"></div>
     `;
 
     dateTabWrapper.appendChild(dateTab)
@@ -78,15 +77,18 @@ const showWeatherInfo = ( weather ) => {
         makeDateTab( key, value )
     }
 
+    // console.log(weather.city)
     // mainSideIcon.src = "";
     // mainSideDegree.innerText = weather.main.temp;
     // mainSideDescription.innerText = weather.weather[0].description;
-    countery.innerText = weather.sys.country;
-    city.innerText = weather.name;
-    lat.innerText = weather.coord.lat;
-    lon.innerText = weather.coord.lon;
-    sunRise.innerText = weather.sys.sunrise;
-    sunSet.innerText = weather.sys.sunset;
+
+    countery.innerText = weather.city.country;
+    city.innerText = weather.city.name;
+    lat.innerText = weather.city.coord.lat;
+    lon.innerText = weather.city.coord.lon;
+    sunRise.innerText = weather.city.sunrise;
+    sunSet.innerText = weather.city.sunset;
+
     // feelLike.innerText = weather.main.feels_like;
     // windSpeed.innerText = weather.wind.speed;
     // windDegree.innerText = weather.wind.deg;
@@ -224,6 +226,20 @@ const fetchForcastWeather = async ( objDetails ) => {
 
     return fetchedForcastWeather;
 
+}
+
+dateTabWrapper.addEventListener("click", ( e ) => showDayWeatherInfo( e ));
+const showDayWeatherInfo = ( e ) => {
+    if ( e.target.parentElement.classList.contains("tab")) {
+        const weatherInfo = JSON.parse(e.target.dataset.dayDetails);
+        console.log(weatherInfo)
+        // countery.innerText = weatherInfo["00:00"].weather.sys.country;
+        // city.innerText = weatherInfo["00:00"].weather.name;
+        // lat.innerText = weatherInfo["00:00"].weather.coord.lat;
+        // lon.innerText = weatherInfo["00:00"].weather.coord.lon;
+        // sunRise.innerText = weatherInfo["00:00"].weather.sys.sunrise;
+        // sunSet.innerText = weatherInfo["00:00"].weather.sys.sunset;
+    }
 }
 
 // fetchForcastWeather({name: "beni mellal"});
