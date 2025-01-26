@@ -73,19 +73,13 @@ const makeDateTab = ( tab, dayDatails ) => {
     dateTabWrapper.appendChild(dateTab)
 }
 
-const showWeatherInfo = ( weather ) => {
-    // create date nvigations
-    for (const [key, value] of Object.entries(weather.days)) {
-        makeDateTab( key, value )
-    }
-    
-    const currentDetails = Object.values(Object.values(weather.days)[0])[0]
-    
-    const keys = Object.values(weather.days)[0]
+const updateTimeBtns = ( keys ) => {
     for (const [key, value ] of Object.entries( keys )) {
-        document.getElementById(key).dataset.timeDetail = JSON.stringify(value);
+        document.getElementById(key).dataset.timeDetail = `${JSON.stringify(value)}`;
     }
+}
 
+const showCurrentDetails = ( currentDetails ) => {
     // mainSideIcon.src = "";
     mainSideDegree.innerText = currentDetails.main.temp;
     mainSideDescription.innerText = currentDetails.weather[0].description;
@@ -106,6 +100,21 @@ const showWeatherInfo = ( weather ) => {
     humidity.innerText = currentDetails.main.humidity;
     seaLevel.innerText = currentDetails.main.sea_level;
     grndLevel.innerText = currentDetails.main.grnd_level;
+}
+
+const showWeatherInfo = ( weather ) => {
+    // create date nvigations
+    for (const [key, value] of Object.entries(weather.days)) {
+        makeDateTab( key, value )
+    }
+    
+    const currentDetails = Object.values(Object.values(weather.days)[0])[0]
+    
+    const keys = Object.values(weather.days)[0]
+    updateTimeBtns( keys )
+
+    showCurrentDetails( currentDetails )
+    
 }
 
 const fetchWeather = async ( url ) => {
@@ -240,13 +249,13 @@ dateTabWrapper.addEventListener("click", ( e ) => showDayWeatherInfo( e ));
 const showDayWeatherInfo = ( e ) => {
     if ( e.target.parentElement.classList.contains("tab")) {
         const weatherInfo = JSON.parse(e.target.dataset.dayDetails);
-        console.log(weatherInfo)
-        // countery.innerText = weatherInfo["00:00"].weather.sys.country;
-        // city.innerText = weatherInfo["00:00"].weather.name;
-        // lat.innerText = weatherInfo["00:00"].weather.coord.lat;
-        // lon.innerText = weatherInfo["00:00"].weather.coord.lon;
-        // sunRise.innerText = weatherInfo["00:00"].weather.sys.sunrise;
-        // sunSet.innerText = weatherInfo["00:00"].weather.sys.sunset;
+
+        updateTimeBtns( weatherInfo )
+
+        const currentDetails = Object.values(weatherInfo)[0]
+
+        showCurrentDetails( currentDetails )
+
     }
 }
 
