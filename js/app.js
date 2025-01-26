@@ -155,6 +155,41 @@ const searchCity = (e) => {
 
 loadCityData();
 
+let fetchedForcastWeather = {};
+
+const fetchForcastWeather = async () => {
+    const res = await fetch("https://api.openweathermap.org/data/2.5/forecast?q=casablanca&appid=dd235072273e8b3d0e412e7e1d4435b7");
+    const { city, list } = await res.json();
+
+    fetchedForcastWeather.city = city
+    
+    let chunk = 8;
+
+    for ( let i = 0; i < 5; i++ ) {
+        let newArr = list.splice(0, chunk);
+        fetchedForcastWeather.days = {
+            ...fetchedForcastWeather.days,
+            [newArr[0].dt_txt.split(" ")[0]]: (() => {
+                let times = {};
+                newArr.forEach( timeStp => {
+                    let keyName = `${timeStp.dt_txt.split(" ")[1].split(":")[0]}:00`;
+                    times = {
+                        ...times,
+                        [keyName]: timeStp
+                    }
+                })
+
+                return times
+            })()
+        }
+    }
+    
+    console.log(fetchedForcastWeather)
+
+}
+
+fetchForcastWeather();
+
 
 // async function getWeather () {
 //     const weather = await fetch("https://api.openweathermap.org/data/2.5/weather?lat=-6.353335&lon=32.334193&appid=dd235072273e8b3d0e412e7e1d4435b7");
