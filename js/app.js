@@ -22,6 +22,7 @@ const seaLevel = document.getElementById("sea-level");
 const grndLevel = document.getElementById("grnd-level");
 const loadCities = document.getElementById("load-cities");
 const autoCompletecities = document.getElementById("auto-complete-cities");
+const dateTabWrapper = document.getElementById("date-tab-wrapper");
 
 const apiKey = "dd235072273e8b3d0e412e7e1d4435b7";
 
@@ -41,31 +42,60 @@ const getCurrentLocationWeather = () => {
 
 const setCurrentLocationAndFetchWeather = async ({coords: { longitude, latitude }}) => {
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
-    weather = await fetchWeather( url );
-
+    // weather = await fetchWeather( url );
+    weather = await fetchForcastWeather({ lat: latitude, lon: longitude });
+    
     showWeatherInfo(weather);
     
 }
 
+const makeDateTab = ( tab, dayDatails ) => {
+    
+    console.log( dayDatails["00:00"].main.temp )
+    const date = new Date( tab );
+    const dayNames = ["sun", "mon", "tus", "wed", "thu", "fri", "sat" ]
+    
+    const dateTab = document.createElement("div")
+    dateTab.className = "tab relative col-span-2 p-3 bg-[#262B4F] transition-all hover:bg-[#4F4772] rounded-xl flex justify-center items-center cursor-pointer";
+    dateTab.id = tab;
+    dateTab.innerHTML = `
+        <div class="box-day capitalize">
+            <div class="w-full flex items-center justify-between">
+                <span class="text-sm">${ dayDatails["00:00"].main.temp } °C</span>
+                <img src="https://openweathermap.org/img/wn/${ dayDatails["00:00"].weather[0].icon }.png" alt="weather" class="w-7 ml-2">
+            </div>
+            <div class="day text-lg font-bold text-center mt-2">${ dayNames[date.getDay()] }-${ date.getDate() }</div>
+        </div>
+        <div class="box-day-click w-full h-full absolute top-0 left-0 z-50 bg-transparent"></div>
+    `;
+
+    dateTabWrapper.appendChild(dateTab)
+}
+
 const showWeatherInfo = ( weather ) => {
+    // create date nvigations
+    for (const [key, value] of Object.entries(weather.days)) {
+        makeDateTab( key, value )
+    }
+
     // mainSideIcon.src = "";
-    mainSideDegree.innerText = weather.main.temp;
-    mainSideDescription.innerText = weather.weather[0].description;
+    // mainSideDegree.innerText = weather.main.temp;
+    // mainSideDescription.innerText = weather.weather[0].description;
     countery.innerText = weather.sys.country;
     city.innerText = weather.name;
     lat.innerText = weather.coord.lat;
     lon.innerText = weather.coord.lon;
     sunRise.innerText = weather.sys.sunrise;
     sunSet.innerText = weather.sys.sunset;
-    feelLike.innerText = weather.main.feels_like;
-    windSpeed.innerText = weather.wind.speed;
-    windDegree.innerText = weather.wind.deg;
-    maxTemp.innerText = weather.main.temp_max;
-    minTemp.innerText = weather.main.temp_min;
-    presure.innerText = weather.main.pressure;
-    humidity.innerText = weather.main.humidity;
-    seaLevel.innerText = weather.main.sea_level;
-    grndLevel.innerText = weather.main.grnd_level;
+    // feelLike.innerText = weather.main.feels_like;
+    // windSpeed.innerText = weather.wind.speed;
+    // windDegree.innerText = weather.wind.deg;
+    // maxTemp.innerText = weather.main.temp_max;
+    // minTemp.innerText = weather.main.temp_min;
+    // presure.innerText = weather.main.pressure;
+    // humidity.innerText = weather.main.humidity;
+    // seaLevel.innerText = weather.main.sea_level;
+    // grndLevel.innerText = weather.main.grnd_level;
 }
 
 const fetchWeather = async ( url ) => {
@@ -160,12 +190,10 @@ let fetchedForcastWeather = {};
 const fetchForcastWeather = async ( objDetails ) => {
     let url;
 
-    if ( 'name' in objDetails ) url = `https://api.openweathermap.org/data/2.5/forecast?q=${objDetails.name}&appid=dd235072273e8b3d0e412e7e1d4435b7`;
+    if ( 'name' in objDetails ) url = `https://api.openweathermap.org/data/2.5/forecast?q=${objDetails.name}&appid=${apiKey}&units=metric`;
 
-    if ( 'lat' in objDetails ) url = `https://api.openweathermap.org/data/2.5/forecast?lat=${objDetails.lat}&lon=${objDetails.lon}&appid=${apiKey}`;
+    if ( 'lat' in objDetails ) url = `https://api.openweathermap.org/data/2.5/forecast?lat=${objDetails.lat}&lon=${objDetails.lon}&appid=${apiKey}&units=metric`;
 
-    console.log( url )
-    // const res = await fetch("https://api.openweathermap.org/data/2.5/forecast?q=casablanca&appid=dd235072273e8b3d0e412e7e1d4435b7");
     const res = await fetch( url );
     const { city, list } = await res.json();
 
@@ -192,12 +220,14 @@ const fetchForcastWeather = async ( objDetails ) => {
         }
     }
     
-    console.log(fetchedForcastWeather)
+    // console.log(fetchedForcastWeather)
+
+    return fetchedForcastWeather;
 
 }
 
 // fetchForcastWeather({name: "beni mellal"});
-fetchForcastWeather({lat: 32.3373, lon: -6.3498});
+// fetchForcastWeather({lat: 32.3373, lon: -6.3498});
 
 
 // async function getWeather () {
