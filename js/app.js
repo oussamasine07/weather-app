@@ -24,6 +24,7 @@ const loadCities = document.getElementById("load-cities");
 const autoCompletecities = document.getElementById("auto-complete-cities");
 const dateTabWrapper = document.getElementById("date-tab-wrapper");
 const timeDetails = document.getElementById("time-details");
+const timeBtnsWrapper = document.getElementById("time-btns-wrapper");
 
 
 const apiKey = "dd235072273e8b3d0e412e7e1d4435b7";
@@ -62,30 +63,25 @@ const makeDateTab = ( tab, dayDatails ) => {
     dateTab.innerHTML = `
         <div class="box-day capitalize">
             <div class="w-full flex items-center justify-between">
-                <span class="text-sm">${ dayDatails["00:00"].main.temp } °C</span>
-                <img src="https://openweathermap.org/img/wn/${ dayDatails["00:00"].weather[0].icon }.png" alt="weather" class="w-7 ml-2">
+                <span class="text-sm" id="tab-temp-${tab}">${ dayDatails["00:00"].main.temp } °C</span>
+                <img id="tab-icon-${tab}" src="https://openweathermap.org/img/wn/${ dayDatails["00:00"].weather[0].icon }.png" alt="weather" class="w-7 ml-2">
             </div>
             <div class="day text-lg font-bold text-center mt-2">${ dayNames[date.getDay()] }-${ date.getDate() }</div>
         </div>
-        <div data-day-details='${ JSON.stringify(dayDatails) }' class="box-day-click w-full h-full absolute top-0 left-0 z-50 bg-transparent"></div>
+        <div data-day='${ tab }' data-day-details='${ JSON.stringify(dayDatails) }' class="box-day-click w-full h-full absolute top-0 left-0 z-50 bg-transparent"></div>
     `;
 
     dateTabWrapper.appendChild(dateTab)
 }
 
-const showWeatherInfo = ( weather ) => {
-    // create date nvigations
-    for (const [key, value] of Object.entries(weather.days)) {
-        makeDateTab( key, value )
-    }
-    
-    const currentDetails = Object.values(Object.values(weather.days)[0])[0]
-    
-    const keys = Object.values(weather.days)[0]
+const updateTimeBtns = ( keys, day ) => {
     for (const [key, value ] of Object.entries( keys )) {
-        document.getElementById(key).dataset.timeDetail = JSON.stringify(value);
+        document.getElementById(key).dataset.timeDetail = `${JSON.stringify(value)}`;
+        document.getElementById(key).dataset.day = day;
     }
+}
 
+const showCurrentDetails = ( currentDetails ) => {
     // mainSideIcon.src = "";
     mainSideDegree.innerText = currentDetails.main.temp;
     mainSideDescription.innerText = currentDetails.weather[0].description;
@@ -106,6 +102,23 @@ const showWeatherInfo = ( weather ) => {
     humidity.innerText = currentDetails.main.humidity;
     seaLevel.innerText = currentDetails.main.sea_level;
     grndLevel.innerText = currentDetails.main.grnd_level;
+}
+
+const showWeatherInfo = ( weather ) => {
+    // create date nvigations
+    for (const [key, value] of Object.entries(weather.days)) {
+        makeDateTab( key, value )
+    }
+    
+    const currentDetails = Object.values(Object.values(weather.days)[0])[0]
+    
+    const keys = Object.values(weather.days)[0]
+    const day = Object.keys(weather.days)[0]
+
+    updateTimeBtns( keys, day )
+
+    showCurrentDetails( currentDetails )
+    
 }
 
 const fetchWeather = async ( url ) => {
@@ -240,13 +253,31 @@ dateTabWrapper.addEventListener("click", ( e ) => showDayWeatherInfo( e ));
 const showDayWeatherInfo = ( e ) => {
     if ( e.target.parentElement.classList.contains("tab")) {
         const weatherInfo = JSON.parse(e.target.dataset.dayDetails);
+        const day = e.target.dataset.day
+
         console.log(weatherInfo)
-        // countery.innerText = weatherInfo["00:00"].weather.sys.country;
-        // city.innerText = weatherInfo["00:00"].weather.name;
-        // lat.innerText = weatherInfo["00:00"].weather.coord.lat;
-        // lon.innerText = weatherInfo["00:00"].weather.coord.lon;
-        // sunRise.innerText = weatherInfo["00:00"].weather.sys.sunrise;
-        // sunSet.innerText = weatherInfo["00:00"].weather.sys.sunset;
+        const currentDetails = Object.values(weatherInfo)[0]
+
+        updateTimeBtns( weatherInfo, day )
+
+        showCurrentDetails( currentDetails )
+
+    }
+}
+
+timeBtnsWrapper.addEventListener("click", ( e ) => showTimeDetails( e ))
+
+const showTimeDetails = ( e ) => {
+    if (e.target.classList.contains("time-details")) {
+        if (e.target.dataset.timeDetail) {
+            const details = JSON.parse(e.target.dataset.timeDetail)
+            showCurrentDetails( details )
+            
+            document.getElementById(`tab-temp-${e.target.dataset.day}`).innerText = details.main.temp
+            document.getElementById(`tab-icon-${e.target.dataset.day}`).src = `https://openweathermap.org/img/wn/${ details.weather[0].icon }.png`
+        } else {
+            console.log("data not found")
+        }
     }
 }
 
