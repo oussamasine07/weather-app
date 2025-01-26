@@ -23,6 +23,8 @@ const grndLevel = document.getElementById("grnd-level");
 const loadCities = document.getElementById("load-cities");
 const autoCompletecities = document.getElementById("auto-complete-cities");
 const dateTabWrapper = document.getElementById("date-tab-wrapper");
+const timeDetails = document.getElementById("time-details");
+
 
 const apiKey = "dd235072273e8b3d0e412e7e1d4435b7";
 
@@ -76,11 +78,17 @@ const showWeatherInfo = ( weather ) => {
     for (const [key, value] of Object.entries(weather.days)) {
         makeDateTab( key, value )
     }
+    
+    const currentDetails = Object.values(Object.values(weather.days)[0])[0]
+    
+    const keys = Object.values(weather.days)[0]
+    for (const [key, value ] of Object.entries( keys )) {
+        document.getElementById(key).dataset.timeDetail = JSON.stringify(value);
+    }
 
-    // console.log(weather.city)
     // mainSideIcon.src = "";
-    // mainSideDegree.innerText = weather.main.temp;
-    // mainSideDescription.innerText = weather.weather[0].description;
+    mainSideDegree.innerText = currentDetails.main.temp;
+    mainSideDescription.innerText = currentDetails.weather[0].description;
 
     countery.innerText = weather.city.country;
     city.innerText = weather.city.name;
@@ -89,15 +97,15 @@ const showWeatherInfo = ( weather ) => {
     sunRise.innerText = weather.city.sunrise;
     sunSet.innerText = weather.city.sunset;
 
-    // feelLike.innerText = weather.main.feels_like;
-    // windSpeed.innerText = weather.wind.speed;
-    // windDegree.innerText = weather.wind.deg;
-    // maxTemp.innerText = weather.main.temp_max;
-    // minTemp.innerText = weather.main.temp_min;
-    // presure.innerText = weather.main.pressure;
-    // humidity.innerText = weather.main.humidity;
-    // seaLevel.innerText = weather.main.sea_level;
-    // grndLevel.innerText = weather.main.grnd_level;
+    feelLike.innerText = currentDetails.main.feels_like;
+    windSpeed.innerText = currentDetails.wind.speed;
+    windDegree.innerText = currentDetails.wind.deg;
+    maxTemp.innerText = currentDetails.main.temp_max;
+    minTemp.innerText = currentDetails.main.temp_min;
+    presure.innerText = currentDetails.main.pressure;
+    humidity.innerText = currentDetails.main.humidity;
+    seaLevel.innerText = currentDetails.main.sea_level;
+    grndLevel.innerText = currentDetails.main.grnd_level;
 }
 
 const fetchWeather = async ( url ) => {
