@@ -90,7 +90,7 @@ const updateTimeBtns = ( keys, day ) => {
 }
 
 const showCurrentDetails = ( currentDetails ) => {
-    // mainSideIcon.src = "";
+    mainSideIcon.src = `https://openweathermap.org/img/wn/${ currentDetails.weather[0].icon }.png`;
     mainSideDegree.innerText = currentDetails.main.temp;
     mainSideDescription.innerText = currentDetails.weather[0].description;
 
@@ -114,6 +114,7 @@ const showCurrentDetails = ( currentDetails ) => {
 
 const showWeatherInfo = ( weather ) => {
     // create date nvigations
+    dateTabWrapper.innerHTML = "";
     for (const [key, value] of Object.entries(weather.days)) {
         makeDateTab( key, value )
     }
